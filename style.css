@@ -1,0 +1,48 @@
+#apply {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+#mode-radio {
+  display: flex;
+  flex-direction: row;
+}
+
+label {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+input {
+  width: 100%;
+  max-width: 100%;
+}
+
+#description {
+  display: flex;
+  flex-direction: column;
+}
+
+#submit {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 10%;
+}
+
+.job {
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none;
+}
