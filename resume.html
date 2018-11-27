@@ -19,16 +19,15 @@
       <label for="mode">View <input name="mode" type="radio" value="view"></label>
     </form>
     <section id="application" class="hidden">
-      <form id="apply" action="resume.php" method="post">
-        <label for="firstname">First Name: <input name="firstname"></label>
-        <label for="lastname">Last Name: <input name="lastname"></label>
-        <label for="email">Email: <input name="email" type="email"></label>
-        <label for="phone">Phone Number: <input name="phone"></label>
+      <form id="apply">
+        <label for="firstname">First Name: <input name="firstname" required></label>
+        <label for="lastname">Last Name: <input name="lastname" required></label>
+        <label for="email">Email: <input name="email" type="email" required></label>
         <section id="work-history">
           <h2>Work History:</h2>
           <div class="job" id="job1">
-            <label for="jobtitle">Job Title: <input name="jobtitle"></label>
-            <label for="employer">Employer: <input name="employer"></label>
+            <label for="jobtitle">Job Title: <input name="jobtitle" required></label>
+            <label for="employer">Employer: <input name="employer" required></label>
             <label for="datestart">Start Date: <input name="datestart" type="month"></label>
             <label for="dateend">End Date: <input name="dateend" type="month"></label>
             <p>(put current date if present)</p>
