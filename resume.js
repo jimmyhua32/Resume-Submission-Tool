@@ -20,18 +20,20 @@
 
   function changeDisplay() {
     let selected = qs('input[name="mode"]:checked').value;
+    $("resume").classList.add("hidden");
     if (selected === "submission") {
       $("application").classList.remove("hidden");
       $("view").classList.add("hidden");
     } else {
       $("view").classList.remove("hidden");
       $("application").classList.add("hidden");
+      updateResumes();
     }
   }
 
   function addJob() {
     let newJob = document.createElement("div");
-    newJob.innerHTML = $("job" + jobCount).innerHTML;
+    newJob.innerHTML = $("job1").innerHTML;
     jobCount++;
     newJob.classList.add("job");
     newJob.id = "job" + jobCount;
@@ -39,13 +41,15 @@
   }
 
   function submitForm() {
+    // add a check for valid parameters and alerting the user first
     let parameters = [];
     for (let i = 0; i < NUM_CONTACT_FIELDS; i++) {
       parameters.push(getByName(FIELDS[i])[0].value);
     }
-    for (let i = 0; i < FIELDS.length - NUM_CONTACT_FIELDS; i++) {
+    for (let i = NUM_CONTACT_FIELDS; i < FIELDS.length; i++) {
       parameters.push(getValuesFromNodeList(getByName(FIELDS[i])));
     }
+    $("apply").reset();
     let application = new FormData();
     application.append("data", JSON.stringify(parameters));
     fetch(URL, { method: "POST", body: application })
@@ -54,18 +58,80 @@
       .catch(showMessage);
   }
 
+  function updateResumes() {
+    let url = URL + "?type=all";
+    fetch(url)
+      .then(checkStatus)
+      .then(JSON.parse)
+      .then(parseResumes)
+      .catch(showMessage);
+  }
+
+  function parseResumes(responseData) {
+    $("people").innerHTML = "";
+    for (let i = 0; i < responseData.length; i++) {
+      let row = document.createElement("tr");
+      row.id = responseData[i].id;
+      row.appendChild(addTableData(responseData[i]["first_name"]));
+      row.appendChild(addTableData(responseData[i]["last_name"]));
+      row.appendChild(addTableData(responseData[i]["email"]));
+      row.addEventListener("dblclick", getResume);
+      $("people").appendChild(row);
+    }
+  }
+
+  function getResume() {
+    qs('input[name="mode"]:checked').checked = false;
+    $("view").classList.add("hidden");
+    $("resume").classList.remove("hidden");
+    let info = this.querySelectorAll("td");
+    $("resume-name").innerText = info[0].innerText + " " + info[1].innerText;
+    $("resume-email").innerText = info[2].innerText;
+    let url = URL + "?type=id&id=" + this.id;
+    fetch(url)
+      .then(checkStatus)
+      .then(JSON.parse)
+      .then(showResume)
+      .catch(showMessage);
+  }
+
+  function showResume(responseData) {
+    $("resume-work-history").innerHTML = "";
+    for (let i = 0; i < responseData.length; i++) {
+      let work = document.createElement("article");
+      let jobNum = document.createElement("h4");
+      jobNum.innerText = "Job #" + (i + 1);
+      work.appendChild(jobNum);
+      addEntry(work, "Job Title: " + responseData[i]["job_title"]);
+      addEntry(work, "Employer: " + responseData[i]["employer"]);
+      addEntry(work, "Date Start: " + responseData[i]["date_start"]);
+      addEntry(work, "Date End: " + responseData[i]["date_end"]);
+      addEntry(work, "Job Description: " + responseData[i]["descr"]);
+      work.classList.add("job-listing");
+      $("resume-work-history").appendChild(work);
+    }
+  }
+
+  function addEntry(parent, stringEntry) {
+    let entry = document.createElement("p");
+    entry.innerText = stringEntry;
+    parent.appendChild(entry);
+  }
+
   function successMessage(responseData) {
     showMessage(responseData);
   }
 
   function showMessage(message) {
+    const MESSAGE_TIMEOUT = 2000;
     $("message").innerText = message;
     $("application").classList.add("hidden");
     $("view").classList.add("hidden");
     $("message").classList.remove("hidden");
-    // setTimeout(function () {
-    //   $("message").classList.add("hidden");
-    // }, 2000);
+    qs('input[name="mode"]:checked').checked = false;
+    setTimeout(function () {
+      $("message").classList.add("hidden");
+    }, MESSAGE_TIMEOUT);
   }
 
   function getValuesFromNodeList(list) {
@@ -96,6 +162,12 @@
     } else {
       return responseText.then(Promise.reject.bind(Promise));
     }
+  }
+
+  function addTableData(data) {
+    let td = document.createElement("td");
+    td.innerText = data;
+    return td;
   }
 
   function qs(query) {

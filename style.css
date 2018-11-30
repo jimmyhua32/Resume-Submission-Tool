@@ -1,3 +1,7 @@
+main {
+  margin-left: 20px;
+}
+
 #apply {
   display: flex;
   flex-direction: column;
@@ -41,6 +45,11 @@ input {
 
 .job {
   margin-bottom: 20px;
+}
+
+#resume {
+  width: 50%;
+  word-wrap: break-word;
 }
 
 .hidden {

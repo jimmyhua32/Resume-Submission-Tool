@@ -13,23 +13,43 @@
     <h1>Resume Submission Tool</h1>
   </header>
   <main>
-    <h2><strong>Mode: </strong></h2>
+    <h2>
+      <strong>Mode: </strong>
+    </h2>
     <form id="mode-radio">
-      <label for="mode">Submission <input name="mode" type="radio" value="submission"></label>
-      <label for="mode">View <input name="mode" type="radio" value="view"></label>
+      <label for="mode">Submit
+        <input name="mode" type="radio" value="submission">
+      </label>
+      <label for="mode">View
+        <input name="mode" type="radio" value="view">
+      </label>
     </form>
     <section id="application" class="hidden">
       <form id="apply">
-        <label for="firstname">First Name: <input name="firstname" required></label>
-        <label for="lastname">Last Name: <input name="lastname" required></label>
-        <label for="email">Email: <input name="email" type="email" required></label>
+        <label for="firstname">First Name:
+          <input name="firstname" required>
+        </label>
+        <label for="lastname">Last Name:
+          <input name="lastname" required>
+        </label>
+        <label for="email">Email:
+          <input name="email" type="email" required>
+        </label>
         <section id="work-history">
           <h2>Work History:</h2>
           <div class="job" id="job1">
-            <label for="jobtitle">Job Title: <input name="jobtitle" required></label>
-            <label for="employer">Employer: <input name="employer" required></label>
-            <label for="datestart">Start Date: <input name="datestart" type="month"></label>
-            <label for="dateend">End Date: <input name="dateend" type="month"></label>
+            <label for="jobtitle">Job Title:
+              <input name="jobtitle" required>
+            </label>
+            <label for="employer">Employer:
+              <input name="employer" required>
+            </label>
+            <label for="datestart">Start Date:
+              <input name="datestart" type="month">
+            </label>
+            <label for="dateend">End Date:
+              <input name="dateend" type="month">
+            </label>
             <p>(put current date if present)</p>
             <label for="desc" id="description">Description:
               <textarea name="desc" form="apply" rows="10" cols="50" maxlength="500"></textarea>
@@ -41,7 +61,23 @@
       </form>
     </section>
     <section id="view" class="hidden">
-
+      <h2>Submitted Resumes:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody id="people">
+        </tbody>
+      </table>
+    </section>
+    <section id="resume" class="hidden">
+      <h2 id="resume-name"></h2>
+      <h3 id="resume-email"></h3>
+      <div id="resume-work-history"></div>
     </section>
     <p id="message" class="hidden"></p>
   </main>
