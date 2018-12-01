@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<!--
+     Name: Jimmy Hua
+     Date: November 26, 2018
+     Section: CSE 154 AC
+     This is the HTML page for the resume submitter. It contains multiple menu views and input
+     forms so users can input their resume. 
+-->
+
 <html lang="en">
 
 <head>
@@ -17,42 +25,42 @@
       <strong>Mode: </strong>
     </h2>
     <form id="mode-radio">
-      <label for="mode">Submit
+      <label>Submit
         <input name="mode" type="radio" value="submission">
       </label>
-      <label for="mode">View
+      <label>View
         <input name="mode" type="radio" value="view">
       </label>
     </form>
     <section id="application" class="hidden">
       <form id="apply">
         <label for="firstname">First Name:
-          <input name="firstname" required>
+          <input id="firstname" name="firstname" required>
         </label>
         <label for="lastname">Last Name:
-          <input name="lastname" required>
+          <input id="lastname" name="lastname" required>
         </label>
         <label for="email">Email:
-          <input name="email" type="email" required>
+          <input id="email" name="email" type="email" required>
         </label>
         <section id="work-history">
           <h2>Work History:</h2>
           <div class="job" id="job1">
             <label for="jobtitle">Job Title:
-              <input name="jobtitle" required>
+              <input id="jobtitle" name="jobtitle" required>
             </label>
             <label for="employer">Employer:
-              <input name="employer" required>
+              <input id="employer" name="employer" required>
             </label>
             <label for="datestart">Start Date:
-              <input name="datestart" type="month">
+              <input id="datestart" name="datestart" type="month">
             </label>
             <label for="dateend">End Date:
-              <input name="dateend" type="month">
+              <input id="dateend" name="dateend" type="month">
             </label>
             <p>(put current date if present)</p>
             <label for="desc" id="description">Description:
-              <textarea name="desc" form="apply" rows="10" cols="50" maxlength="500"></textarea>
+              <textarea id="desc" name="desc" form="apply" rows="10" cols="50" maxlength="500"></textarea>
             </label>
           </div>
         </section>

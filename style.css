@@ -1,3 +1,12 @@
+/*
+  Name: Jimmy Hua
+  Date: November 26, 2018
+  Section: CSE 154 AC
+  This is the CSS file used to style the resume submitter. It uses flex display to center and
+  align things vertically along the page. It also ensures the content of the page is at a
+  reasonable width.
+*/
+
 main {
   margin-left: 20px;
 }
