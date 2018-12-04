@@ -1,0 +1,66 @@
+/*
+  Name: Jimmy Hua
+  Date: November 26, 2018
+  Section: CSE 154 AC
+  This is the CSS file used to style the resume submitter. It uses flex display to center and
+  align things vertically along the page. It also ensures the content of the page is at a
+  reasonable width.
+*/
+
+main {
+  margin-left: 20px;
+}
+
+#apply {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+#mode-radio {
+  display: flex;
+  flex-direction: row;
+}
+
+label {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+input {
+  width: 100%;
+  max-width: 100%;
+}
+
+#description {
+  display: flex;
+  flex-direction: column;
+}
+
+#submit {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 10%;
+}
+
+.job {
+  margin-bottom: 20px;
+}
+
+#resume {
+  width: 50%;
+  word-wrap: break-word;
+}
+
+.hidden {
+  display: none;
+}
