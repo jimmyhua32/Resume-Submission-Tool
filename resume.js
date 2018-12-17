@@ -18,6 +18,7 @@
    * buttons and checking for form input.
    */
   function initialize() {
+
     $("mode-radio").addEventListener("input", changeDisplay);
     $("add-job").addEventListener("click", addJob);
     $("apply").onsubmit = function () {
@@ -49,9 +50,17 @@
     jobCount++;
     newJob.classList.add("job");
     newJob.id = "job" + jobCount;
+    let removeButton = document.createElement("button");
+    removeButton.innerText = "Remove this job";
+    newJob.appendChild(removeButton);
+    removeButton.addEventListener("click", removeJob);
     $("work-history").appendChild(newJob);
   }
 
+  function removeJob() {
+    this.parentElement.innerHTML = "";
+    jobCount--;  
+  }
   /**
    * Submits the resume form and sends a POST request to the API with the information given.
    */
@@ -239,6 +248,15 @@
    */
   function qs(query) {
     return document.querySelector(query);
+  }
+
+  /**
+   * Helper function that returns an array of the given elements designated by the query
+   * @param {String} query - Query for the element
+   * @returns {object} - an array of the selected elements
+   */
+  function qsa(query) {
+    return document.querySelectorAll(query);
   }
 
   /**
